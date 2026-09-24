@@ -558,19 +558,6 @@ function DepartmentStat({
    HELPERS
 ========================= */
 
-function getInitial(
-  value?: string | null,
-): string {
-  if (!value) {
-    return '?';
-  }
-
-  return value
-    .trim()
-    .charAt(0)
-    .toUpperCase();
-}
-
 function getDepartmentIcon(
   index: number,
 ): string {

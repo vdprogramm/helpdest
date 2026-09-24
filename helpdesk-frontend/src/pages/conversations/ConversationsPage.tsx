@@ -52,9 +52,6 @@ export default function ConversationsPage() {
 
     const [error, setError] = useState('');
 
-    const [conversationFilter, setConversationFilter] =
-        useState<'ALL' | 'ACTIVE' | 'CLOSED'>('ALL');
-
     const [
         lastReadConversationId,
         setLastReadConversationId,

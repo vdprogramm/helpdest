@@ -1,5 +1,4 @@
 import api from './axios';
-import { unwrapData } from './api-response';
 
 export type AgentStatus =
   | 'ACTIVE'

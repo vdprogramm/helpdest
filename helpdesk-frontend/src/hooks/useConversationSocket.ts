@@ -13,7 +13,6 @@ import type {
 
 import {
   connectChatSocket,
-  getChatSocket,
 } from '../socket/chat.socket';
 
 import {

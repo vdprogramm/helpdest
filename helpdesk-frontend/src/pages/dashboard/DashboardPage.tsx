@@ -66,10 +66,10 @@ export default function DashboardPage() {
   const [ticketTrend, setTicketTrend] =
     useState<TicketTrend[]>([]);
 
-  const [recentTickets, setRecentTickets] =
+  const [, setRecentTickets] =
     useState<RecentTicket[]>([]);
 
-  const [agentPerformance, setAgentPerformance] =
+  const [, setAgentPerformance] =
     useState<AgentPerformance[]>([]);
 
   const [loading, setLoading] =
