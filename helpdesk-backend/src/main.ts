@@ -14,11 +14,13 @@ async function bootstrap() {
       AppModule,
     );
 
-  // Cho phép React Vite gọi Backend
+  const frontendUrl = process.env.FRONTEND_URL;
+
   app.enableCors({
     origin: [
       'http://localhost:5173',
       'http://127.0.0.1:5173',
+      ...(frontendUrl ? [frontendUrl] : []),
     ],
     methods: [
       'GET',
@@ -50,13 +52,12 @@ async function bootstrap() {
     },
   );
 
-  const port =
-    process.env.PORT ?? 3005;
+  const port = process.env.PORT || 3005;
 
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
 
   console.log(
-    `Helpdesk Backend running at http://localhost:${port}`,
+    `Helpdesk Backend running on port ${port}`,
   );
 }
 
