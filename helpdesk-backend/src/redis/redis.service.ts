@@ -12,16 +12,17 @@ export class RedisService
     private readonly client: Redis;
 
     constructor() {
-        this.client = new Redis({
-            host:
-                process.env.REDIS_HOST ||
-                'localhost',
+        const redisUrl = process.env.REDIS_URL;
 
-            port: Number(
-                process.env.REDIS_PORT ||
-                6379,
-            ),
-        });
+        if (redisUrl) {
+            this.client = new Redis(redisUrl);
+        } else {
+            this.client = new Redis({
+                host: process.env.REDIS_HOST || 'localhost',
+                port: Number(process.env.REDIS_PORT || 6379),
+            });
+        }
+
     }
 
     async onModuleInit() {
