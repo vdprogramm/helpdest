@@ -1,0 +1,62 @@
+import {
+    Body,
+    Controller,
+    Get,
+    Post,
+    Req,
+    UseGuards,
+} from '@nestjs/common';
+
+import type { Request } from 'express';
+
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { RolesGuard } from './roles.guard';
+import { Roles } from './roles.decorator';
+
+@Controller('auth')
+export class AuthController {
+    constructor(
+        private readonly authService: AuthService,
+    ) { }
+
+    @Post('register')
+    async register(
+        @Body() registerDto: RegisterDto,
+    ) {
+        return this.authService.register(registerDto);
+    }
+
+    @Post('login')
+    async login(
+        @Body() loginDto: LoginDto,
+    ) {
+        return this.authService.login(loginDto);
+    }
+
+    @Get('me')
+    @UseGuards(JwtAuthGuard)
+    async getMe(@Req() req: Request) {
+        return req.user;
+    }
+
+    @Get('admin-test')
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('ADMIN')
+    async adminTest() {
+        return {
+            message: 'Bạn đang truy cập API dành cho ADMIN',
+        };
+    }
+
+    @Get('agent-test')
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles('AGENT')
+    async agentTest() {
+        return {
+            message: 'Bạn đang truy cập API dành cho AGENT',
+        };
+    }
+}

@@ -1,0 +1,515 @@
+/* =========================
+   OVERLAY
+========================= */
+
+.ticket-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(5px);
+
+    animation: modalFadeIn 0.2s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.ticket-modal {
+    width: 100%;
+    max-width: 680px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.25),
+        0 8px 20px rgba(79, 70, 229, 0.12);
+
+    animation: modalSlideIn 0.25s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.ticket-modal-banner {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 22px 25px;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb 0%,
+            #4f46e5 48%,
+            #7c3aed 100%);
+
+    color: white;
+}
+
+.ticket-modal-banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    top: -100px;
+    right: 30px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.ticket-modal-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    font-size: 23px;
+
+    backdrop-filter: blur(8px);
+}
+
+.ticket-modal-banner h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ticket-modal-banner p {
+    margin: 4px 0 0;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 15px;
+}
+
+.ticket-modal-close {
+    position: relative;
+    z-index: 2;
+
+    width: 35px;
+    height: 35px;
+
+    margin-left: auto;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.ticket-modal-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg);
+}
+
+/* =========================
+   FORM
+========================= */
+
+.ticket-create-form {
+    padding: 25px;
+}
+
+.ticket-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+.ticket-form-group {
+    margin-bottom: 20px;
+}
+
+.ticket-form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #344054;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.ticket-form-group label>span {
+    margin-left: 3px;
+    color: #ef4444;
+}
+
+.ticket-form-group input,
+.ticket-form-group select {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dce2eb;
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #fbfcfe;
+    color: #334155;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+.ticket-form-group input::placeholder {
+    color: #a8b0bf;
+}
+
+.ticket-form-group input:hover,
+.ticket-form-group select:hover {
+    border-color: #bdc8d8;
+}
+
+.ticket-form-group input:focus,
+.ticket-form-group select:focus {
+    border-color: #6366f1;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* =========================
+   PRIORITY SELECTOR
+========================= */
+
+.priority-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+.priority-option {
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #64748b;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.priority-option:hover {
+    transform: translateY(-2px);
+}
+
+/* LOW */
+
+.priority-option-low:hover,
+.priority-option-low.selected {
+    border-color: #3b82f6;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    box-shadow:
+        0 4px 12px rgba(59, 130, 246, 0.13);
+}
+
+/* MEDIUM */
+
+.priority-option-medium:hover,
+.priority-option-medium.selected {
+    border-color: #eab308;
+
+    background: #fefce8;
+    color: #ca8a04;
+
+    box-shadow:
+        0 4px 12px rgba(234, 179, 8, 0.13);
+}
+
+/* HIGH */
+
+.priority-option-high:hover,
+.priority-option-high.selected {
+    border-color: #f97316;
+
+    background: #fff7ed;
+    color: #ea580c;
+
+    box-shadow:
+        0 4px 12px rgba(249, 115, 22, 0.13);
+}
+
+/* URGENT */
+
+.priority-option-urgent:hover,
+.priority-option-urgent.selected {
+    border-color: #ef4444;
+
+    background: #fef2f2;
+    color: #dc2626;
+
+    box-shadow:
+        0 4px 12px rgba(239, 68, 68, 0.13);
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.ticket-form-error {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 20px;
+    padding: 11px 13px;
+
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+
+    background: #fef2f2;
+    color: #dc2626;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.ticket-form-error>span {
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ef4444;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.ticket-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 7px;
+    padding-top: 20px;
+
+    border-top: 1px solid #edf0f4;
+}
+
+.ticket-cancel-button,
+.ticket-submit-button {
+    min-width: 105px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.ticket-cancel-button {
+    border: 1px solid #dce2eb;
+
+    background: white;
+    color: #64748b;
+}
+
+.ticket-cancel-button:hover {
+    background: #f8fafc;
+    color: #334155;
+}
+
+.ticket-submit-button {
+    border: 0;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #6366f1,
+            #7c3aed);
+
+    color: white;
+
+    box-shadow:
+        0 7px 17px rgba(79, 70, 229, 0.25);
+}
+
+.ticket-submit-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 22px rgba(79, 70, 229, 0.32);
+}
+
+.ticket-submit-button:disabled,
+.ticket-cancel-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.ticket-modal-loading {
+    min-height: 280px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #8490a4;
+
+    font-size: 15px;
+}
+
+.button-spinner {
+    width: 14px;
+    height: 14px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+
+    animation: modalButtonSpin 0.7s linear infinite;
+}
+
+@keyframes modalButtonSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+    .ticket-modal-overlay {
+        padding: 12px;
+    }
+
+    .ticket-modal {
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+
+    .ticket-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .priority-selector {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ticket-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .ticket-cancel-button,
+    .ticket-submit-button {
+        width: 100%;
+    }
+}

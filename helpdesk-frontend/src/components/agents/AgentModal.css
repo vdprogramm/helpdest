@@ -1,0 +1,615 @@
+.agent-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, 0.52);
+  backdrop-filter: blur(6px);
+}
+
+.agent-modal {
+  width: 100%;
+  max-width: 590px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: white;
+
+  box-shadow:
+    0 30px 80px
+    rgba(15, 23, 42, 0.28);
+}
+
+/* HEADER */
+
+.agent-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #6366f1,
+      #8b5cf6
+    );
+
+  color: white;
+}
+
+.agent-modal-header-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  font-size: 20px;
+}
+
+.agent-modal-header
+> div:nth-child(2) {
+  flex: 1;
+}
+
+.agent-modal-header h2 {
+  margin: 0;
+
+  font-size: 17px;
+}
+
+.agent-modal-header p {
+  margin: 4px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.78);
+
+  font-size: 13px;
+}
+
+.agent-modal-close {
+  width: 32px;
+  height: 32px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  color: white;
+
+  font-size: 21px;
+
+  cursor: pointer;
+}
+
+.agent-modal-close:hover {
+  background:
+    rgba(255, 255, 255, 0.26);
+}
+
+/* FORM */
+
+.agent-modal-form {
+  max-height: 75vh;
+
+  overflow-y: auto;
+
+  padding: 20px;
+}
+
+.agent-form-group {
+  margin-bottom: 16px;
+}
+
+.agent-form-group > label {
+  display: flex;
+  gap: 4px;
+
+  margin-bottom: 7px;
+
+  color: #475569;
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.agent-form-group
+> label > span {
+  color: #ef4444;
+}
+
+/* INPUT */
+
+.agent-form-input {
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0 11px;
+
+  border: 1px solid #dce2eb;
+  border-radius: 10px;
+
+  background: #fbfcfe;
+
+  transition: 0.2s;
+}
+
+.agent-form-input:focus-within {
+  border-color: #6366f1;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(99, 102, 241, 0.09);
+}
+
+.agent-form-input > span {
+  color: #94a3b8;
+
+  font-size: 16px;
+}
+
+.agent-form-input input {
+  width: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #334155;
+
+  font-size: 14px;
+}
+
+.agent-form-input
+input::placeholder {
+  color: #b0b7c3;
+}
+
+.agent-field-help {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+/* ERROR */
+
+.agent-form-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 16px;
+  padding: 11px 12px;
+
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+
+  background: #fef2f2;
+}
+
+.agent-form-error > span {
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ef4444;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.agent-form-error strong {
+  display: block;
+
+  color: #dc2626;
+
+  font-size: 13px;
+}
+
+.agent-form-error p {
+  margin: 2px 0 0;
+
+  color: #ef4444;
+
+  font-size: 13px;
+}
+
+/* STATUS */
+
+.agent-status-selector {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 9px;
+}
+
+.agent-status-selector button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  min-height: 62px;
+
+  padding: 10px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+
+  background: #fbfcfe;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.agent-status-selector
+button:hover {
+  border-color: #c7d2fe;
+
+  background: #f8faff;
+}
+
+.status-select-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #f1f5f9;
+  color: #64748b;
+
+  font-size: 15px;
+}
+
+.agent-status-selector strong {
+  display: block;
+
+  color: #475569;
+
+  font-size: 13px;
+}
+
+.agent-status-selector
+button span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+.agent-status-selector
+.active-status {
+  border-color: #86efac;
+
+  background: #f0fdf4;
+}
+
+.agent-status-selector
+.active-status
+.status-select-icon {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.agent-status-selector
+.inactive-status {
+  border-color: #cbd5e1;
+
+  background: #f8fafc;
+}
+
+.agent-status-selector
+.inactive-status
+.status-select-icon {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+/* PREVIEW */
+
+.agent-modal-preview {
+  padding: 13px;
+
+  border: 1px solid #ddd6fe;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8faff,
+      #f5f3ff
+    );
+}
+
+.agent-preview-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #8b5cf6;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.agent-preview-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agent-preview-avatar {
+  position: relative;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #6366f1,
+      #8b5cf6
+    );
+
+  color: white;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.preview-online,
+.preview-offline {
+  position: absolute;
+
+  right: -3px;
+  bottom: -3px;
+
+  width: 11px;
+  height: 11px;
+
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+.preview-online {
+  background: #22c55e;
+}
+
+.preview-offline {
+  background: #94a3b8;
+}
+
+.agent-preview-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.agent-preview-info strong,
+.agent-preview-info span {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agent-preview-info strong {
+  color: #334155;
+
+  font-size: 14px;
+}
+
+.agent-preview-info span {
+  margin-top: 3px;
+
+  color: #94a3b8;
+
+  font-size: 13px;
+}
+
+.agent-preview-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 4px;
+}
+
+.preview-agent-role,
+.preview-active-status,
+.preview-inactive-status {
+  padding: 4px 7px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.preview-agent-role {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.preview-active-status {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.preview-inactive-status {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+/* ACTIONS */
+
+.agent-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+
+  margin-top: 20px;
+  padding-top: 16px;
+
+  border-top:
+    1px solid #edf0f4;
+}
+
+.agent-modal-cancel,
+.agent-modal-save {
+  height: 38px;
+
+  padding: 0 15px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+.agent-modal-cancel {
+  border: 1px solid #dce2eb;
+
+  background: white;
+  color: #64748b;
+}
+
+.agent-modal-save {
+  min-width: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  border: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #6366f1,
+      #7c3aed
+    );
+
+  color: white;
+
+  box-shadow:
+    0 6px 16px
+    rgba(79, 70, 229, 0.2);
+}
+
+.agent-modal-save:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.agent-modal-cancel:disabled,
+.agent-modal-save:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.agent-modal-spinner {
+  width: 13px;
+  height: 13px;
+
+  border: 2px solid
+    rgba(255, 255, 255, 0.4);
+
+  border-top-color: white;
+  border-radius: 50%;
+
+  animation:
+    agentModalSpin
+    0.7s linear infinite;
+}
+
+@keyframes agentModalSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .agent-modal-overlay {
+    padding: 10px;
+  }
+
+  .agent-status-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-preview-badges {
+    display: none;
+  }
+
+  .agent-modal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

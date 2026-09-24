@@ -1,0 +1,192 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+  AGENT
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum ConversationStatus {
+  ACTIVE
+  CLOSED
+}
+
+enum SenderType {
+  CUSTOMER
+  AGENT
+  SYSTEM
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  SYSTEM
+}
+
+model User {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      UserRole   @default(AGENT)
+  status    UserStatus @default(ACTIVE)
+  isOnline  Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  agentDepartments AgentDepartment[]
+  assignedTickets  Ticket[]          @relation("AssignedAgent")
+  cannedResponses  CannedResponse[]  @relation("CreatedBy")
+  conversations    Conversation[]
+
+  @@map("users")
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  name      String
+  email     String?
+  phone     String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tickets       Ticket[]
+  conversations Conversation[]
+
+  @@map("customers")
+}
+
+model Department {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  status      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  agentDepartments AgentDepartment[]
+  tickets          Ticket[]
+  cannedResponses  CannedResponse[]
+
+  @@map("departments")
+}
+
+model AgentDepartment {
+  id           String   @id @default(uuid())
+  agentId      String
+  departmentId String
+  createdAt    DateTime @default(now())
+
+  agent      User       @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  department Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  @@unique([agentId, departmentId])
+  @@index([agentId])
+  @@index([departmentId])
+  @@map("agent_departments")
+}
+
+model Ticket {
+  id              String         @id @default(uuid())
+  customerId      String
+  departmentId    String
+  assignedAgentId String?
+  subject         String
+  priority        TicketPriority @default(MEDIUM)
+  status          TicketStatus   @default(OPEN)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  closedAt        DateTime?
+
+  customer      Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  department    Department    @relation(fields: [departmentId], references: [id])
+  assignedAgent User?         @relation("AssignedAgent", fields: [assignedAgentId], references: [id], onDelete: SetNull)
+  conversation  Conversation?
+
+  @@index([customerId])
+  @@index([departmentId])
+  @@index([assignedAgentId])
+  @@index([status])
+  @@map("tickets")
+}
+
+model Conversation {
+  id         String             @id @default(uuid())
+  ticketId   String             @unique
+  customerId String
+  agentId    String?
+  status     ConversationStatus @default(ACTIVE)
+  startedAt  DateTime           @default(now())
+  endedAt    DateTime?
+
+  ticket   Ticket    @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  customer Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  agent    User?     @relation(fields: [agentId], references: [id], onDelete: SetNull)
+  messages Message[]
+
+  @@index([customerId])
+  @@index([agentId])
+  @@index([status])
+  @@map("conversations")
+}
+
+model Message {
+  id             String      @id @default(uuid())
+  conversationId String
+  senderType     SenderType
+  senderId       String?
+  content        String
+  messageType    MessageType @default(TEXT)
+  isRead         Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+  @@index([createdAt])
+  @@map("messages")
+}
+
+model CannedResponse {
+  id           String   @id @default(uuid())
+  departmentId String?
+  title        String
+  content      String
+  createdById  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  department Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  createdBy  User        @relation("CreatedBy", fields: [createdById], references: [id])
+
+  @@index([departmentId])
+  @@index([createdById])
+  @@map("canned_responses")
+}

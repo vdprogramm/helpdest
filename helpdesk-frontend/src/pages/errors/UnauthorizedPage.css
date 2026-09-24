@@ -1,0 +1,118 @@
+.unauthorized-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      #dbeafe,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #ede9fe,
+      transparent 35%
+    ),
+    #f8fafc;
+}
+
+.unauthorized-card {
+  width: 100%;
+  max-width: 430px;
+
+  padding: 38px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.92
+    );
+
+  box-shadow:
+    0 30px 70px
+    rgba(15, 23, 42, 0.12);
+
+  text-align: center;
+}
+
+.unauthorized-icon {
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
+  font-size: 28px;
+}
+
+.unauthorized-code {
+  color: #6366f1;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.unauthorized-card h1 {
+  margin: 7px 0;
+
+  color: #1e293b;
+
+  font-size: 25px;
+}
+
+.unauthorized-card p {
+  margin:
+    0 auto 22px;
+
+  max-width: 300px;
+
+  color: #64748b;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.unauthorized-card button {
+  padding:
+    11px 18px;
+
+  border: 0;
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #4f46e5,
+      #7c3aed
+    );
+
+  color: white;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
