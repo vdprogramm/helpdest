@@ -121,3 +121,7 @@ Helpdesk/
    ```
 
 🎉 **Bây giờ bạn có thể truy cập http://localhost:5173 để sử dụng hệ thống!**
+
+Tài khoản Admin:
+email: admin@helpdesk.com
+password: Admin@123456
